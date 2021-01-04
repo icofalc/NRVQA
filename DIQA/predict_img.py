@@ -67,6 +67,8 @@ subjective_error_model = tf.saved_model.load("models/")
 infer = subjective_error_model.signatures['serving_default']
 frame = cv2.imread(imgpath)
 frame = np.expand_dims(frame, axis=0)
+
+#im = np.asarray(im).astype('float32')
 im = tf.constant(frame)
 im = image_preprocess(im)
 out = infer(im)
